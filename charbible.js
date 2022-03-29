@@ -41,18 +41,25 @@ class Character {
 	constructor(obj) {
 		this.charName = null;
 		this.charProduct = null;
+		this.charImage = null;
 		this.charAge = null;
 		this.charBody = null;
 		this.charRace = null;
 		this.charGender = null;
 		this.charLocation = null;
 		this.charAbility = null;
-		this.charImage = null;
+
 	}
 
 	displayChar(loc) {									// takes parameter: what's the name of the part of the screen to put this?
 		console.log("called Display Character");
 		$("charlist").html("<div class=\"char\">Show a character here!</div>");
+
+		/*
+				format: two columns
+				- image to the left col
+				- right: name, copy, metadata ul.
+		*/
 	}
 }
 
