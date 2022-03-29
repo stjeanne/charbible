@@ -49,4 +49,21 @@ class Character {
 		this.charAbility = null;
 		this.charImage = null;
 	}
+
+	displayChar(loc) {									// takes parameter: what's the name of the part of the screen to put this?
+		console.log("called Display Character");
+		$("charlist").html("<div class=\"char\">Show a character here!</div>");
+	}
 }
+
+let c = new Character;
+
+class BibleManager {
+
+	// encapsulates the character data.
+
+
+};
+
+
+//
