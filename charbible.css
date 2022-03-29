@@ -1,0 +1,13 @@
+body {
+	font-family: 'benton-sans', Open Sans;
+}
+
+.char {
+
+	width: 700px;
+	margin: auto;
+}
+
+.char .charname {
+	font-size: 1.25em;
+}

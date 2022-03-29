@@ -38,7 +38,15 @@
 
 class Character {
 
-	constructor() {
-		this.name = null;
+	constructor(obj) {
+		this.charName = null;
+		this.charProduct = null;
+		this.charAge = null;
+		this.charBody = null;
+		this.charRace = null;
+		this.charGender = null;
+		this.charLocation = null;
+		this.charAbility = null;
+		this.charImage = null;
 	}
 }
