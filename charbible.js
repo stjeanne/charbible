@@ -1,0 +1,44 @@
+// character bible maker
+
+/*
+
+	create an array or w/e of Chracter objects
+
+	Import the CSV file (or convert it to json)
+
+	for each row in the file
+
+		- create a new character
+		- populate a character's information
+		- populate the image
+
+	now generate a website
+
+	add header information
+
+	add selectors/search
+
+	create the div for characters
+		for each character
+			create a div
+
+			show the portrait
+			show the name
+			show all other info
+			show the copy
+			tag wth metadata
+
+			close the div
+
+	close the div for characters
+
+	add footer information
+
+*/
+
+class Character {
+
+	constructor() {
+		this.name = null;
+	}
+}
