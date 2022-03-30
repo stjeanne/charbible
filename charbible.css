@@ -11,3 +11,34 @@ body {
 .char .charname {
 	font-size: 1.25em;
 }
+
+.char .charcopy {
+	font-sze: 1em;
+}
+
+.char .leftcol {
+	float:left;
+	width: 30%;
+}
+
+.char .rightcol {
+	width: 70%;
+}
+
+.char .charMeta {
+	list-style-type: none;
+}
+
+.char .charMeta li {
+	display: inline-block;
+	background-color: #ddd;
+	padding: 5px;
+	margin: 5px;
+	font-size: 0.5em;
+}
+
+.char:after {
+	content: "";
+	display: table;
+	clear: both;
+}

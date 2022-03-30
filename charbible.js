@@ -41,6 +41,7 @@ class Character {
 	constructor(obj) {
 		this.charName = null;
 		this.charProduct = null;
+		this.charCopy = null;
 		this.charImage = null;
 		this.charAge = null;
 		this.charBody = null;
@@ -56,17 +57,26 @@ class Character {
 		$("#" + loc).append(
 				"<div class=\"char\">" + 
 
-				"<p class=\"charname\">" + this.charName + "</p>" +
+				"<div class=\"leftcol\"><img src=\"" + this.charImage + "\"></div>" +
+
+				"<div class=\"rightcol\"><p class=\"charname\">" + this.charName + "</p>" +
+				"<p class=\"charCopy\">" + this.charCopy + "</p>" +
+				"<p>" + 
+				"<ul class=\"charMeta\">" +
+					"<li>" + this.charGender + "</li>" +
+					"<li>" + this.charRace + "</li>" +
+					"<li>" + this.charAge + "</li>" +
+					"<li>" + this.charBody + "</li>" +
+					"<li>" + this.charLocation + "</li>" +
+					"<li>" + this.charAbility + "</li>" +
+				"</ul>" +
+
+				"</p></div>" +
 
 
 
 				"</div>");
 
-		/*
-				format: two columns
-				- image to the left col
-				- right: name, copy, metadata ul.
-		*/
 	}
 }
 
