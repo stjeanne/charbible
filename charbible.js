@@ -53,7 +53,14 @@ class Character {
 
 	displayChar(loc) {									// takes parameter: what's the name of the part of the screen to put this?
 		console.log("called Display Character");
-		$("charlist").html("<div class=\"char\">Show a character here!</div>");
+		$("#" + loc).append(
+				"<div class=\"char\">" + 
+
+				"<p class=\"charname\">" + this.charName + "</p>" +
+
+
+
+				"</div>");
 
 		/*
 				format: two columns
@@ -64,6 +71,7 @@ class Character {
 }
 
 let c = new Character;
+
 
 class BibleManager {
 
