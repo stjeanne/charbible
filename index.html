@@ -4,6 +4,10 @@
 
 	<script src="jquery-3.3.1.min.js"></script>
 	<script src="charbible.js"></script>
+	<script>
+		let charBible = null;
+	</script>
+
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,9 +20,13 @@
 	<body>
 
 		<script>
-			$("document").ready(function () {
-				console.log("hello worldddd");
-				c.displayChar('charlist');	// mystery bug for tomorrow: why doesn't this show up in the right place?
+			$("document").ready(() => {
+
+				let p = new Promise((resolve, reject) => {
+					charBible = new Bible('fractionsCB.json');
+				})
+
+				p.then(() => console.log("then executed!"))
 			});
 		</script>
 

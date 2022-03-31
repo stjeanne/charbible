@@ -38,17 +38,21 @@
 
 class Character {
 
-	constructor(obj) {
-		this.charName = null;
-		this.charProduct = null;
-		this.charCopy = null;
-		this.charImage = null;
-		this.charAge = null;
-		this.charBody = null;
-		this.charRace = null;
-		this.charGender = null;
-		this.charLocation = null;
-		this.charAbility = null;
+	constructor(charData) {
+
+//		console.log("in the constructor for Character. using data as follows: ");
+//		console.log(charData);
+
+		this.charName = charData.Name;
+		this.charProduct = charData.Product;
+		this.charCopy = charData.Copy;
+		this.charImage = "res/" + charData.Image;
+		this.charAge = charData.Age;
+		this.charBody = charData['Body Type'];
+		this.charRace = charData.Race;
+		this.charGender = charData.Gender;
+		this.charLocation = charData.Location;
+		this.charAbility = charData.Ability;
 
 	}
 
@@ -80,13 +84,32 @@ class Character {
 	}
 }
 
-let c = new Character;
+class Bible { 	// encapsulates the character data
 
+	constructor(file) {
 
-class BibleManager {
+		let self = this;
+		this.Chars = [];
 
-	// encapsulates the character data.
+		/* opens file and builds an array of characters from it. */
 
+		$.getJSON(file, function(data) {
+
+			console.log("loaded data as follows:");
+			console.log(data);
+
+			$.each(data, function(key,val) {
+				self.Chars.push(new Character(val));
+			});
+
+			console.log("we've constructed a bible. here's what it looks like as we exist the constructor");
+			console.log(self);
+		});
+	}
+
+	displayProduct(prod, sortrule) {
+
+	}
 
 };
 

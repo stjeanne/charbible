@@ -3,7 +3,6 @@ body {
 }
 
 .char {
-
 	width: 700px;
 	margin: auto;
 }
@@ -35,6 +34,7 @@ body {
 	padding: 5px;
 	margin: 5px;
 	font-size: 0.5em;
+	border-radius: 3.14em;
 }
 
 .char:after {
