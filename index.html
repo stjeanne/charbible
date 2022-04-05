@@ -22,11 +22,18 @@
 		<script>
 			$("document").ready(() => {
 
-				let p = new Promise((resolve, reject) => {
+				let p = new Promise((resolve) => {
 					charBible = new Bible('fractionsCB.json');
+
+					// we need to call resolve(), but only once we know the file is loaded.
+					// possibly we can do this in a method: we call like charbible.areUReady, and if true, we resolve.
+					// 
 				})
 
-				p.then(() => console.log("then executed!"))
+				p.then(() => {
+					console.log("in 'then' at last!");
+					$("charlist").append("and now we can use em!");
+				})
 			});
 		</script>
 

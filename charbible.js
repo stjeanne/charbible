@@ -102,13 +102,17 @@ class Bible { 	// encapsulates the character data
 				self.Chars.push(new Character(val));
 			});
 
+		})
+
+		.done(() => {
+			console.log("entered the 'done' phase");
 			console.log("we've constructed a bible. here's what it looks like as we exist the constructor");
 			console.log(self);
 		});
 	}
 
 	displayProduct(prod, sortrule) {
-
+		console.log("let's show the bible now!");
 	}
 
 };
