@@ -58,10 +58,10 @@ class Character {
 
 	displayChar(loc) {									// takes parameter: what's the name of the part of the screen to put this?
 		console.log("called Display Character");
-		$("#" + loc).append(
+		$(loc).append(
 				"<div class=\"char\">" + 
 
-				"<div class=\"leftcol\"><img src=\"" + this.charImage + "\"></div>" +
+				"<div class=\"leftcol\"><img width=\"100\" src=\"" + this.charImage + "\"></div>" +
 
 				"<div class=\"rightcol\"><p class=\"charname\">" + this.charName + "</p>" +
 				"<p class=\"charCopy\">" + this.charCopy + "</p>" +
@@ -86,12 +86,14 @@ class Character {
 
 class Bible { 	// encapsulates the character data
 
-	constructor(file) {
+	constructor(file, res) {
 
 		let self = this;
 		this.Chars = [];
 
 		/* opens file and builds an array of characters from it. */
+
+		console.log("race: this is in the constructor");
 
 		$.getJSON(file, function(data) {
 
@@ -101,18 +103,20 @@ class Bible { 	// encapsulates the character data
 			$.each(data, function(key,val) {
 				self.Chars.push(new Character(val));
 			});
+			res();
 
 		})
-
-		.done(() => {
-			console.log("entered the 'done' phase");
-			console.log("we've constructed a bible. here's what it looks like as we exist the constructor");
-			console.log(self);
-		});
 	}
 
-	displayProduct(prod, sortrule) {
+	displayProduct(loc, prod, sortrule) {
 		console.log("let's show the bible now!");
+
+		// for now, just: go through the bible and display all of it
+
+		this.Chars.forEach((c) => {
+			c.displayChar(loc);
+		});
+
 	}
 
 };

@@ -23,16 +23,17 @@
 			$("document").ready(() => {
 
 				let p = new Promise((resolve) => {
-					charBible = new Bible('fractionsCB.json');
+					charBible = new Bible('fractionsCB.json', resolve);
 
 					// we need to call resolve(), but only once we know the file is loaded.
 					// possibly we can do this in a method: we call like charbible.areUReady, and if true, we resolve.
 					// 
+					//resolve();
 				})
 
 				p.then(() => {
-					console.log("in 'then' at last!");
-					$("charlist").append("and now we can use em!");
+					$("#charlist").html("");
+					charBible.displayProduct("#charlist");
 				})
 			});
 		</script>
