@@ -40,9 +40,6 @@ class Character {
 
 	constructor(charData) {
 
-//		console.log("in the constructor for Character. using data as follows: ");
-//		console.log(charData);
-
 		this.charName = charData.Name;
 		this.charProduct = charData.Product;
 		this.charCopy = charData.Copy;
@@ -93,8 +90,6 @@ class Bible { 	// encapsulates the character data
 
 		/* opens file and builds an array of characters from it. */
 
-		console.log("race: this is in the constructor");
-
 		$.getJSON(file, function(data) {
 
 			console.log("loaded data as follows:");
@@ -108,10 +103,17 @@ class Bible { 	// encapsulates the character data
 		})
 	}
 
-	displayProduct(loc, prod, sortrule) {
-		console.log("let's show the bible now!");
 
-		// for now, just: go through the bible and display all of it
+/*
+		Viable options for sort rule: alphabetical
+*/
+
+	displayItAll(loc, prod, sortrule) {
+		console.log("let's show the whole bible!");
+		console.log("prod is " + prod);
+
+		$(loc).html("");
+
 
 		this.Chars.forEach((c) => {
 			c.displayChar(loc);
@@ -119,7 +121,38 @@ class Bible { 	// encapsulates the character data
 
 	}
 
+	selectProduct(prod) {
+		return this.Chars.filter((c) => c.charProduct == prod);
+	}
+
 };
 
+class Controller {
+
+	constructor() {
+
+	}
+
+	addDropdown(loc, criterion) {
+
+		// adds a dropdown control at loc, sets it to test for criterion, and creates an event listener to see if it's changed
+
+		$(loc).append("<select name=\"" + criterion + "Dropdown\"><option value=\"" + criterion + "Value\">" + criterion + "</option>");
+		console.log("adding a dropdown at " + loc + " that tests for " + criterion);
+	}
+
+	addCheckbox(loc, criterion, label) {
+
+		console.log("adding a checkbox at " + loc + " that tests for " + criterion);
+
+
+		$(loc).append("<input type=\"checkbox\" name=\"" + criterion + "Checkbox\">" +
+
+			"<label for=\"" + criterion + "Checkbox\">" + label + "</label>");
+		$("" + criterion + "Checkbox").change(() => {
+			console.log("the checkbox at " + criterion + "Label changed!");
+		});
+	}
+}
 
 //

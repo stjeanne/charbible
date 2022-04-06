@@ -6,6 +6,7 @@
 	<script src="charbible.js"></script>
 	<script>
 		let charBible = null;
+		let control = null;
 	</script>
 
 
@@ -22,18 +23,17 @@
 		<script>
 			$("document").ready(() => {
 
-				let p = new Promise((resolve) => {
-					charBible = new Bible('fractionsCB.json', resolve);
+				// this part loads the things and displays them
 
-					// we need to call resolve(), but only once we know the file is loaded.
-					// possibly we can do this in a method: we call like charbible.areUReady, and if true, we resolve.
-					// 
-					//resolve();
+				let p = new Promise((resolve) => {
+					control = new Controller();
+					charBible = new Bible('fractionsCB.json', resolve);
 				})
 
 				p.then(() => {
-					$("#charlist").html("");
-					charBible.displayProduct("#charlist");
+					control.addDropdown("#filters", "Fractions");
+					control.addCheckbox("#filters", "Major", "Show Minor chars (doesn't work yet)");
+					charBible.displayItAll("#charlist", "Fractions");
 				})
 			});
 		</script>
@@ -42,6 +42,8 @@
 		<div id="wrapper">
 			<h1>Character Bible</h1>
 
+			<div id="filters">
+			</div>
 			<div id="charlist">
 				<p>Loading resources...</p>
 				</div>

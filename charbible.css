@@ -2,6 +2,15 @@ body {
 	font-family: 'benton-sans', Open Sans;
 }
 
+#filters {
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 1em;
+	text-align: center;
+	font-size: 0.8em;
+}
+
 .char {
 	width: 700px;
 	margin-left: auto;
