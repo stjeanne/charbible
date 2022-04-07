@@ -58,7 +58,7 @@ class Character {
 		$(loc).append(
 				"<div class=\"char\">" + 
 
-				"<div class=\"leftcol\"><img width=\"100\" src=\"" + this.charImage + "\"></div>" +
+				"<div class=\"leftcol\"><img width=\"200\" src=\"" + this.charImage + "\"></div>" +
 
 				"<div class=\"rightcol\"><p class=\"charname\">" + this.charName + "</p>" +
 				"<p class=\"charCopy\">" + this.charCopy + "</p>" +
@@ -137,7 +137,10 @@ class Controller {
 
 		// adds a dropdown control at loc, sets it to test for criterion, and creates an event listener to see if it's changed
 
-		$(loc).append("<select name=\"" + criterion + "Dropdown\"><option value=\"" + criterion + "Value\">" + criterion + "</option>");
+		// scroll through the possible options in the bible for that criterion
+
+		$(loc).append("<select name=\"" + criterion + "Dropdown\">" + 
+			"<option value=\"" + criterion + "Value\">" + criterion + "</option>");
 		console.log("adding a dropdown at " + loc + " that tests for " + criterion);
 	}
 
@@ -145,12 +148,13 @@ class Controller {
 
 		console.log("adding a checkbox at " + loc + " that tests for " + criterion);
 
+		let elementName = criterion + "Checkbox";
 
-		$(loc).append("<input type=\"checkbox\" name=\"" + criterion + "Checkbox\">" +
+		$(loc).append("<input type=\"checkbox\" id=\"" + elementName + "\">" +
 
 			"<label for=\"" + criterion + "Checkbox\">" + label + "</label>");
-		$("" + criterion + "Checkbox").change(() => {
-			console.log("the checkbox at " + criterion + "Label changed!");
+		$("#" + elementName).on("change", () => {
+			console.log("the checkbox at " + elementName + "changed!");
 		});
 	}
 }
