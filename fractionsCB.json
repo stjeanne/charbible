@@ -29,6 +29,21 @@
    "Ability": "Not specified",
    "Age": "Not specified"
  },
+  {
+   "Name": "Pradeep",
+   "Product": "Math Makers",
+   "Other Products": "",
+   "Major": "Major",
+   "Image": "Pradeep.png",
+   "Copy": "Pradeep is NOT a character in Fractions.",
+   "Word Count (calculates)": 16,
+   "Gender": "Male",
+   "Race": "Asian",
+   "Body Type": "Slender",
+   "Setting": "Urban",
+   "Ability": "Not specified",
+   "Age": "Kid"
+ },
  {
    "Name": "Scary Digital Assistant (SDA)",
    "Product": "Fractions",

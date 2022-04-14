@@ -40,6 +40,7 @@ class Character {
 
 	constructor(charData) {
 
+		this.allData = charData;					// hopefully simplifies searching and sorting
 		this.charName = charData.Name;
 		this.charProduct = charData.Product;
 		this.charCopy = charData.Copy;
@@ -125,6 +126,43 @@ class Bible { 	// encapsulates the character data
 		return this.Chars.filter((c) => c.charProduct == prod);
 	}
 
+	getAllValuesForKey(key) {
+
+
+//		let r = this.Chars.filter(c => key in c.allData);
+
+		let r = key;
+
+		console.log("getAllValues is returning " + r);
+		return r;
+
+
+
+		/*
+			for each character in the bible
+				check whether the character has property key
+				if yes, get the value of key
+				is it unique?
+					if so, add it to the return array!
+		*/
+
+//		return this.Chars.filter((c) => if key in c);
+	}
+
+	buildList(key) {
+
+
+		// takes a given key, like "Product", and returns an array of all possible values for that key.
+		// ...this.Chars = each element in chars
+		/* 
+
+		there's a problem though because chars is its own sort of object--
+		controls would have to like, know the variable names of the object in ways that Seem Bad.
+		What we would want is a way to search the original object.
+
+		*/
+	}
+
 };
 
 class Controller {
@@ -133,9 +171,14 @@ class Controller {
 
 	}
 
-	addDropdown(loc, criterion) {
+	addDropdown(loc, criterion, ref) {
 
 		// adds a dropdown control at loc, sets it to test for criterion, and creates an event listener to see if it's changed
+		// ref can be passed in as a source for options
+
+		console.log(ref);
+
+		console.log(ref.getAllValuesForKey(criterion));
 
 		// scroll through the possible options in the bible for that criterion
 
