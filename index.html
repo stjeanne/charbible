@@ -32,6 +32,8 @@
 
 				p.then(() => {
 					control.addDropdown("#filters", "Product", charBible);
+					control.addDropdown("#filters", "Gender", charBible);
+					control.addDropdown("#filters", "Major", charBible);
 //					control.addCheckbox("#filters", "Major", "Show Minor chars");
 					charBible.displayItAll("#charlist");
 				})

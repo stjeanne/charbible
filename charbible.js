@@ -80,6 +80,15 @@ class Character {
 				"</div>");
 
 	}
+
+	getPropertyofChar(prop) {
+
+		// takes a property. if allData has that property, will return its value.
+
+		console.log("in getPropertyofChar, looking at " + prop);
+
+		return this.allData[prop];
+	}
 }
 
 class Bible { 	// encapsulates the character data
@@ -128,39 +137,11 @@ class Bible { 	// encapsulates the character data
 
 	getAllValuesForKey(key) {
 
+		let r = new Set;
 
-//		let r = this.Chars.filter(c => key in c.allData);
+		for (const c in this.Chars) { r.add(this.Chars[c].getPropertyofChar(key)); }
 
-		let r = key;
-
-		console.log("getAllValues is returning " + r);
 		return r;
-
-
-
-		/*
-			for each character in the bible
-				check whether the character has property key
-				if yes, get the value of key
-				is it unique?
-					if so, add it to the return array!
-		*/
-
-//		return this.Chars.filter((c) => if key in c);
-	}
-
-	buildList(key) {
-
-
-		// takes a given key, like "Product", and returns an array of all possible values for that key.
-		// ...this.Chars = each element in chars
-		/* 
-
-		there's a problem though because chars is its own sort of object--
-		controls would have to like, know the variable names of the object in ways that Seem Bad.
-		What we would want is a way to search the original object.
-
-		*/
 	}
 
 };
@@ -176,15 +157,18 @@ class Controller {
 		// adds a dropdown control at loc, sets it to test for criterion, and creates an event listener to see if it's changed
 		// ref can be passed in as a source for options
 
-		console.log(ref);
+		console.log("adding a dropdown at " + loc + " that tests for " + criterion);
 
-		console.log(ref.getAllValuesForKey(criterion));
+		let s = "<select name=\"" + criterion + "Dropdown\">";
+		let dropVals = ref.getAllValuesForKey(criterion);
+
+		console.log(dropVals);
 
 		// scroll through the possible options in the bible for that criterion
 
-		$(loc).append("<select name=\"" + criterion + "Dropdown\">" + 
-			"<option value=\"" + criterion + "Value\">" + criterion + "</option>");
-		console.log("adding a dropdown at " + loc + " that tests for " + criterion);
+		dropVals.forEach(v => s += "<option value=\"" + v + "Value\">" + v + "</option>");
+
+		$(loc).append(s + "</select>");
 	}
 
 	addCheckbox(loc, criterion, label) {
