@@ -65,12 +65,12 @@ class Character {
 				"<p class=\"charCopy\">" + this.charCopy + "</p>" +
 				"<p>" + 
 				"<ul class=\"charMeta\">" +
-					"<li>" + this.charGender + "</li>" +
-					"<li>" + this.charRace + "</li>" +
-					"<li>" + this.charAge + "</li>" +
-					"<li>" + this.charBody + "</li>" +
-					"<li>" + this.charLocation + "</li>" +
-					"<li>" + this.charAbility + "</li>" +
+					"<li>Gender: " + this.charGender + "</li>" +
+					"<li>Race: " + this.charRace + "</li>" +
+					"<li>Age: " + this.charAge + "</li>" +
+					"<li>Body Type: " + this.charBody + "</li>" +
+					"<li>Location: " + this.charLocation + "</li>" +
+					"<li>Ability: " + this.charAbility + "</li>" +
 				"</ul>" +
 
 				"</p></div>" +
@@ -131,6 +131,37 @@ class Bible { 	// encapsulates the character data
 
 	}
 
+	selectCharactersFromDropdowns(dropdowns, sortrule) {
+
+		let r = new Array;
+
+		dropdowns.forEach(function(e) {
+/*
+			let dropName = 
+			let 
+
+			r.push(this.Chars.filter(s => )
+*/
+		});
+
+
+/*
+		
+		iterate through the passed list of dropdowns
+		get the current selector from dropdowns. (with special rules for all)
+		
+		// take all the characters: this.Chars
+			// so for each dropdown in the set:
+				get the current value of the dropdown
+				pull out only the characters that match that value
+				push them onto the final display stack
+
+		// sort alphabetically by name
+		// then display what's left as in displayItAll above
+
+*/
+	}
+
 	selectProduct(prod) {
 		return this.Chars.filter((c) => c.charProduct == prod);
 	}
@@ -150,6 +181,12 @@ class Controller {
 
 	constructor() {
 
+		this.dropdowns = new Array;
+
+	}
+
+	getDropdowns() {
+		return this.dropdowns;
 	}
 
 	addDropdown(loc, criterion, ref) {
@@ -159,16 +196,26 @@ class Controller {
 
 		console.log("adding a dropdown at " + loc + " that tests for " + criterion);
 
-		let s = "<select name=\"" + criterion + "Dropdown\">";
+		let elementName = criterion + "Dropdown";
+		let s = "<select id=\"" + elementName + "\">";
 		let dropVals = ref.getAllValuesForKey(criterion);
 
 		console.log(dropVals);
 
 		// scroll through the possible options in the bible for that criterion
 
-		dropVals.forEach(v => s += "<option value=\"" + v + "Value\">" + v + "</option>");
+		dropVals.forEach(v => s += "<option value=\"" + v + "\">" + v + "</option>");
+
+		s += "<option value=\"All\">Show All</option>";
 
 		$(loc).append(s + "</select>");
+		$("#" + elementName).on("change", () => {
+
+			let d = $("#" + elementName + " :selected").val();
+			console.log("the dropdown at " + elementName + " changed to " + d + "!");
+		});
+
+		this.dropdowns.push(elementName);
 	}
 
 	addCheckbox(loc, criterion, label) {
@@ -181,7 +228,7 @@ class Controller {
 
 			"<label for=\"" + criterion + "Checkbox\">" + label + "</label>");
 		$("#" + elementName).on("change", () => {
-			console.log("the checkbox at " + elementName + "changed!");
+			console.log("the checkbox at " + elementName + " changed!");
 		});
 	}
 }
