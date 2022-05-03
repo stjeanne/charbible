@@ -36,6 +36,9 @@
 
 */
 
+const DD_ALL_SELECTOR = "Show All";
+
+
 class Character {
 
 	constructor(charData) {
@@ -131,19 +134,49 @@ class Bible { 	// encapsulates the character data
 
 	}
 
+	displayChars(loc, chars, sortrule) {
+		console.log("let's try sorting just the chars");
+
+		chars.forEach(c => c.displayChar(loc));
+	}
+
+	eraseChars(loc) {
+		console.log("ERASING the old characters at " + loc);
+		$(loc + ".char").remove();
+	}
+
+	eraseAllChars() {
+		console.log("ERASING all characters!");
+		$(".char").remove();
+	}
+
 	selectCharactersFromDropdowns(dropdowns, sortrule) {
 
-		let r = new Array;
+		let r = new Set;	// set that is the return value
+		let self = this;
+		let testChars = this.Chars;	// we'll start with all the characters
 
 		dropdowns.forEach(function(e) {
-/*
-			let dropName = 
-			let 
 
-			r.push(this.Chars.filter(s => )
-*/
+
+			let whichProperty = e.replace("Dropdown","");
+			console.log("in select Chars from Drops, logging the property we look for as " + whichProperty);
+
+			let currentValue = $("#" + e + " :selected").val();	// get the current value of the dropdown
+
+			console.log("the dropdown is currently " + currentValue);
+
+			if (currentValue != DD_ALL_SELECTOR) {	// if it equals "Show All", it doesn't change value
+
+				testChars = testChars.filter(s => s.allData[whichProperty] == currentValue);
+				console.log("the filter made the test array into the following: "); 
+				console.log(testChars);
+			}
+
 		});
 
+		testChars.forEach(c => r.add(c));
+		return r;
 
 /*
 		
@@ -175,6 +208,11 @@ class Bible { 	// encapsulates the character data
 		return r;
 	}
 
+	updateScreen(loc,dropdowns,rule) {
+		this.eraseAllChars();
+		this.displayChars(loc, this.selectCharactersFromDropdowns(dropdowns, rule));
+	}
+
 };
 
 class Controller {
@@ -187,6 +225,10 @@ class Controller {
 
 	getDropdowns() {
 		return this.dropdowns;
+	}
+
+	getDropdownValueByName(name) {
+		return $("#" + name + " :selected").val();
 	}
 
 	addDropdown(loc, criterion, ref) {
@@ -204,18 +246,23 @@ class Controller {
 
 		// scroll through the possible options in the bible for that criterion
 
+		s += "<option value=\"" + DD_ALL_SELECTOR + "\">" + DD_ALL_SELECTOR + "</option>";
+
 		dropVals.forEach(v => s += "<option value=\"" + v + "\">" + v + "</option>");
 
-		s += "<option value=\"All\">Show All</option>";
 
 		$(loc).append(s + "</select>");
+
+		this.dropdowns.push(elementName);
+
 		$("#" + elementName).on("change", () => {
 
 			let d = $("#" + elementName + " :selected").val();
 			console.log("the dropdown at " + elementName + " changed to " + d + "!");
+			ref.updateScreen("#charlist",this.dropdowns);									// THIS WILL MAKE A BUG if this is ever applied to another div; sorry I'm not a good programmer!
 		});
 
-		this.dropdowns.push(elementName);
+
 	}
 
 	addCheckbox(loc, criterion, label) {
