@@ -57,7 +57,10 @@ class Character {
 
 	}
 
-	displayChar(loc) {									// takes parameter: what's the name of the part of the screen to put this?
+	displayChar(loc) {									
+
+		// writes HTML to display this character at a given screen location.
+
 		console.log("called Display Character");
 		$(loc).append(
 				"<div class=\"char\">" + 
@@ -86,7 +89,7 @@ class Character {
 
 	getPropertyofChar(prop) {
 
-		// takes a property. if allData has that property, will return its value.
+		// takes a property. if this character's allData has that property, will return its value. (right now it's super lazy and not error proof)
 
 		console.log("in getPropertyofChar, looking at " + prop);
 
@@ -101,7 +104,6 @@ class Bible { 	// encapsulates the character data
 		let self = this;
 		this.Chars = [];
 
-		/* opens file and builds an array of characters from it. */
 
 		$.getJSON(file, function(data) {
 
@@ -116,14 +118,11 @@ class Bible { 	// encapsulates the character data
 		})
 	}
 
-
-/*
-		Viable options for sort rule: alphabetical
-*/
-
 	displayItAll(loc, prod, sortrule) {
+
+		// displays all characters at a location
+
 		console.log("let's show the whole bible!");
-		console.log("prod is " + prod);
 
 		$(loc).html("");
 
@@ -135,22 +134,25 @@ class Bible { 	// encapsulates the character data
 	}
 
 	displayChars(loc, chars, sortrule) {
-		console.log("let's try sorting just the chars");
+
+		// displays a set of chars at a location.
+
+		console.log("let's try showing just the chars we send it");
 
 		chars.forEach(c => c.displayChar(loc));
 	}
 
-	eraseChars(loc) {
-		console.log("ERASING the old characters at " + loc);
-		$(loc + ".char").remove();
-	}
-
 	eraseAllChars() {
+
+		// erases any character data from the entire page!
+
 		console.log("ERASING all characters!");
 		$(".char").remove();
 	}
 
 	selectCharactersFromDropdowns(dropdowns, sortrule) {
+
+		// based on the current state of the dropdowns, selects just the characters that meet the criterion
 
 		let r = new Set;	// set that is the return value
 		let self = this;
@@ -160,46 +162,28 @@ class Bible { 	// encapsulates the character data
 
 
 			let whichProperty = e.replace("Dropdown","");
-			console.log("in select Chars from Drops, logging the property we look for as " + whichProperty);
-
 			let currentValue = $("#" + e + " :selected").val();	// get the current value of the dropdown
 
-			console.log("the dropdown is currently " + currentValue);
-
 			if (currentValue != DD_ALL_SELECTOR) {	// if it equals "Show All", it doesn't change value
-
 				testChars = testChars.filter(s => s.allData[whichProperty] == currentValue);
-				console.log("the filter made the test array into the following: "); 
-				console.log(testChars);
 			}
 
 		});
 
 		testChars.forEach(c => r.add(c));
 		return r;
-
-/*
-		
-		iterate through the passed list of dropdowns
-		get the current selector from dropdowns. (with special rules for all)
-		
-		// take all the characters: this.Chars
-			// so for each dropdown in the set:
-				get the current value of the dropdown
-				pull out only the characters that match that value
-				push them onto the final display stack
-
-		// sort alphabetically by name
-		// then display what's left as in displayItAll above
-
-*/
 	}
 
 	selectProduct(prod) {
+
+		// selects only the characters from a given product. (probably this is kinda legacy now)
+
 		return this.Chars.filter((c) => c.charProduct == prod);
 	}
 
 	getAllValuesForKey(key) {
+
+		// goes into the character array and pulls out all the properties for the given dropdown key. used to populate dropdown options.
 
 		let r = new Set;
 
@@ -209,6 +193,9 @@ class Bible { 	// encapsulates the character data
 	}
 
 	updateScreen(loc,dropdowns,rule) {
+
+		// implementation of the updateScreen method from controller for the event handler. removes all existing characters + displays the current ones.
+
 		this.eraseAllChars();
 		this.displayChars(loc, this.selectCharactersFromDropdowns(dropdowns, rule));
 	}
@@ -266,6 +253,8 @@ class Controller {
 	}
 
 	addCheckbox(loc, criterion, label) {
+
+		// currently this doesn't work at all. one day it might!
 
 		console.log("adding a checkbox at " + loc + " that tests for " + criterion);
 
