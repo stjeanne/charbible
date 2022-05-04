@@ -1,5 +1,10 @@
 body {
-	font-family: 'benton-sans', Open Sans;
+	font-family: 'Benton Sans', Open Sans;
+}
+
+h1 {
+	font-size: 1.7em;
+	font-weight: normal;
 }
 
 #filters {
@@ -16,18 +21,20 @@ body {
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: 3em;
-	background-color: #FDFFAB;
-	padding: 1em;
+	background-color: #f6f6f6;
+	padding: 2em;
 	border-right: 3px #CCB74D;
 	border-bottom: 3px #CCB74D;
 }
 
 .char .charname {
-	font-size: 1.5em;
+	font-size: 1.7em;
 }
 
 .char .charcopy {
 	font-sze: 1em;
+	color: #3b3b3b;
+	line-height: 1.3em;
 }
 
 .char .leftcol {
@@ -46,7 +53,8 @@ body {
 
 .char .charMeta li {
 	display: inline-block;
-	background-color: #f0f27e;
+	background-color: #9c0d63;
+	color: #fff;
 	padding: 5px;
 	margin: 5px;
 	font-size: 0.5em;
