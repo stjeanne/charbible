@@ -1,0 +1,6 @@
+# gitignore for charbible
+
+*.xslx
+*.pseudo
+*.sublime-project
+*.sublime-workspace
