@@ -36,8 +36,17 @@
 
 */
 
+// this will show in dropdowns as our default value for all fields
+
 const DD_ALL_SELECTOR = "Show All";
 
+
+/* This function is here to take the image URL string from the JSON file and connect it to the actual file by adding appropriate path info. Right now this is very easy! */
+
+const makeNiceImageURL = (url) => { return "res/" + url; };
+
+
+/* this is the class we use to suck character data from the JSON + display it within the char bible app. */
 
 class Character {
 
@@ -47,7 +56,9 @@ class Character {
 		this.charName = charData.Name;
 		this.charProduct = charData.Product;
 		this.charCopy = charData.Copy;
-		this.charImage = "res/" + charData.Image;
+//		this.charImage = "res/" + charData.Image;
+
+		this.charImage = makeNiceImageURL(charData.Image);
 		this.charAge = charData.Age;
 		this.charBody = charData['Body Type'];
 		this.charRace = charData.Race;
@@ -216,6 +227,24 @@ class Controller {
 
 	getDropdownValueByName(name) {
 		return $("#" + name + " :selected").val();
+	}
+
+	addSearchBar(loc, criterion, ref, placehold, submitKey) {
+
+		console.log("adding a searchbar at " + loc);
+
+		let elementName = criterion + "SearchBar";
+		let buttonName = criterion + "SearchButton";
+		let s = "<p><input type=\"text\" placeholder=\"" + placehold + "\" id=\"" + elementName + "\"></input></p>";
+		let submitButton = "<p><button id=\"" + buttonName + "\" type=\"submit\" value=\"\">" + submitKey + "</button></p>";
+
+		// add a click event to the submit button to grab the value of input and process the search + filters
+
+		$(loc).append(s);
+		$(loc).append(submitButton);
+
+
+		$("#" + buttonName).on("click", () => console.log("clicked the submit button at " + buttonName));
 	}
 
 	addDropdown(loc, criterion, ref) {

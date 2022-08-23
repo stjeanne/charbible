@@ -7,6 +7,35 @@ h1 {
 	font-weight: normal;
 }
 
+#searchbar {
+	width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 1em;
+}
+
+#searchbar input {
+	width: 500px;
+	height: 2em;
+	font-size: 1.4em;
+}
+
+#searchbar p {
+	text-align: center;
+}
+
+#searchbar button {
+	width: 150px;
+	background-color: #9c0d63;
+	color: #fff;
+	padding: 0 1.5em;
+	height: 2.5em;
+	font-size: 1em;
+	border: 0px hidden;
+	border-radius: 1.25em;
+}
+
+
 #filters {
 	width: 75%;
 	margin-left: auto;

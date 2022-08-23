@@ -31,6 +31,7 @@
 				})
 
 				p.then(() => {
+					control.addSearchBar("#searchbar", "Mainsearch", charBible, "Who do you want to look up?", "Search");
 					control.addDropdown("#filters", "Product", charBible);
 					control.addDropdown("#filters", "Gender", charBible);
 					control.addDropdown("#filters", "Major", charBible);
@@ -47,6 +48,9 @@
 
 		<div id="wrapper">
 			<h1 style="text-align: center">Character Bible</h1>
+
+			<div id="searchbar">
+			</div>
 
 			<div id="filters">
 			</div>
